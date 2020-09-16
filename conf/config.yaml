@@ -1,0 +1,42 @@
+
+mysql:
+  #最大空闲连接数
+  max_idle_conns: 50
+  #链接
+  source_name: root:root@tcp(192.168.1.112:3306)/uiTemplate?parseTime=true&charset=utf8&loc=Local
+addr: :9091
+logoaddr: rancherui/pandaria-ui/public/assets/images/logos/rancher-logo-cow-white.svg
+logoopensourceaddr: rancherui/pandaria-ui/public/assets/images/logos/main.svg
+oslogoaddr: rancherui/ui/public/assets/images/logos/main.svg
+loginbgaddr: rancherui/pandaria-ui/public/assets/images/login-cityscape.svg
+osloginbgaddr: rancherui/ui/public/assets/images/login-cityscape.svg
+loginiconaddr: rancherui/pandaria-ui/public/assets/images/logos/favicon.ico
+osloginiconaddr: rancherui/ui/public/assets/images/logos/favicon.ico
+footerfileaddr: static/rancherfile/footer
+osfooterfileaddr: static/rancherfile/osfooter
+footercoverfileaddr: static/rancherfile/footerCover
+osfootercoverfileaddr: static/rancherfile/osfooterCover
+themefileaddr: static/rancherfile/_variables
+loginfileaddr: static/rancherfile/loginfile
+apifileaddr: static/rancherfile/apifile
+proxyfileaddr: static/rancherfile/proxy
+savefileaddr: static/variable
+pandariaui: rancherui/pandaria-ui
+rancherui: rancherui/ui
+rancherfooteraddr: rancherui/pandaria-ui/app/components/page-footer-cn/template.hbs
+rancheropensourcefooteraddr: rancherui/pandaria-ui/app/components/page-footer/template.hbs
+osrancherfooteraddr: rancherui/ui/app/components/page-footer/template.hbs
+rancherloginfileaddr: rancherui/pandaria-ui/lib/login/addon/login/template.hbs
+rancherlogofileaddr: rancherui/pandaria-ui/app/components/page-header-left-top/template.hbs
+osrancherloginfileaddr: rancherui/ui/lib/login/addon/login/template.hbs
+rancherapiaddr: rancherui/pandaria-ui/app/application/route.js
+osrancherapiaddr: rancherui/ui/app/application/route.js
+rancherthemeaddr: rancherui/pandaria-ui/app/styles/abstracts/_variables.scss
+osrancherthemeaddr: rancherui/ui/app/styles/abstracts/_variables.scss
+staticbuildfile: static/rancherfile/build-static
+buildfile: rancherui/pandaria-ui/scripts/build-static
+osbuildfile: rancherui/ui/scripts/build-static
+installfile: rancherui/pandaria-ui/scripts/update-dependencies
+osinstallfile: rancherui/ui/scripts/update-dependencies
+pandariaproxyfileaddr: rancherui/pandaria-ui/server/proxies/api.js
+osproxyfileaddr: rancherui/ui/server/proxies/api.js
