@@ -15,15 +15,15 @@ $base-line-height         : 1.4em;
 $code-font-stack          : Consolas, "Andale Mono", "Lucida Console", Monaco, "Courier New", Courier,  monospace !default;
 
 /// Theme colors
-$primary                  : #0075A8 !default;
-$secondary                : #34495E !default;
+$primary                  : {{.Primary}} !default;
+$secondary                : {{.Secondary}} !default;
 
 ///State colors
-$success                  : #27AA5E !default;
-$warning                  : #F1C40F !default;
-$error                    : #F15354 !default;
-$info                     : #78C9CF !default;
-$disabled                 : #dee1e3 !default;
+$success                  : {{.Success}} !default;
+$warning                  : {{.Warning}} !default;
+$error                    : {{.Error}} !default;
+$info                     : {{.Info}} !default;
+$disabled                 : {{.Disabled}} !default;
 
 //Contrast colors
 $contrasted-dark-default  : #3d3d3d !default;
@@ -32,20 +32,20 @@ $contrasted-light-default : white !default;
 
 /// Copy text color
 /// @type Color
-$text-color               : #454545 !default;
-$link-color               : #3497DA !default;
+$text-color               : {{.TextColor}} !default;
+$link-color               : {{.LinkColor}} !default;
 
 /// Light grey
 /// @type Color
-$light-grey               : #ecf0f1 !default;
+$light-grey               : {{.LightGrey}} !default;
 
 /// Medium grey
 /// @type Color
-$mid-grey                 : #8B959C !default;
+$mid-grey                 : {{.MidGrey}} !default;
 
 /// Dark grey
 /// @type Color
-$dark-grey                : #3d3d3d !default;
+$dark-grey                : {{.DarkGrey}} !default;
 
 $black                    : #313131;
 

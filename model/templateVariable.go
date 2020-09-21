@@ -8,7 +8,8 @@ type TemplateVariable struct {
 	VariablesData string `json:"variables_data" form:"variables_data"`
 	LoginrecordData string `json:"loginrecord_data" form:"loginrecord_data"`
 	Title string `json:"title" form:"title"`
-	ToggleLink string `json:"toggleLink" form:"toggleLink"`
+	ToggleLink string `json:"toggleLink" form:"toggleLink"`  // 判断底部 footer link 新增\删除\覆盖
+	Tag string `json:"tag" form:"tag"`
 }
 
 type LinkData struct {

@@ -1,2 +1,7 @@
 static/variable
+static/uploadfile/*
+static/rancherfile/*.hbs
+static/rancherfile/buildflag
+*.log
 .idea
+rancherui/*

@@ -2,7 +2,6 @@
   <a href="#" style="color: #fff" class="btn btn-sm bg-transparent" {{action "showAbout"}} aria-label="About Rancher">{{if settings.rancherVersion settings.rancherVersion (t 'pageFooter.notARelease')}}</a>
 
   {{#if settings.isRancher}}
-    rancher-tool-wsy-link
     {{#if projectId}}
       <a style="color: #fff"  href="{{href-to 'authenticated.project.help' projectId}}" role="button" class="btn btn-sm bg-transparent">{{t 'pageFooter.help'}}</a>
     {{/if}}
@@ -15,6 +14,8 @@
     {{/if}}
     <a style="color: #fff" role="button" class="btn btn-sm bg-transparent" target="blank" rel="noreferrer noopener" href="{{settings.issueUrl}}">{{t 'pageFooter.issues'}}</a>
   {{/if}}
+
+  rancher-tool-wsy-link
 
   <div class="pull-right">
     <div class="compose-download inline-block dropup">

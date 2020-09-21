@@ -3,7 +3,6 @@
 </a>
 
 {{#if settings.isRancher}}
-  rancher-tool-wsy-link
   {{#if projectId}}
     <a href="{{href-to "authenticated.project.help" projectId}}" role="button" class="btn btn-sm bg-transparent">
       {{t "pageFooter.help"}}
@@ -30,6 +29,10 @@
     {{t "pageFooter.issues"}}
   </a>
 {{/if}}
+
+rancher-tool-wsy-link
+
+<FooterSetting @textStyle="color: #fff"/>
 
 <div class="pull-right">
   <div class="compose-download inline-block dropup">
