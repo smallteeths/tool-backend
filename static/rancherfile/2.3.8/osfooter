@@ -32,7 +32,7 @@
 
 rancher-tool-wsy-link
 
-<FooterSetting @textStyle="color: #fff"/>
+<FooterSetting />
 
 <div class="pull-right">
   <div class="compose-download inline-block dropup">
