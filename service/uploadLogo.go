@@ -175,7 +175,7 @@ func Save(c *gin.Context) {
 		Tag: r.Tag,
     }
 
-    if (r.LinkData != "" || r.ToggleLink == "1") && r.ToggleLink != "3" {
+    if r.ToggleLink != "3" {
         ChangeFooterFile(c, r.LinkData, version, r.ToggleLink, r.Tag)
         info, err := ioutil.ReadFile("static/rancherfile/footer.hbs")
 
@@ -379,7 +379,7 @@ func ChangeFooterFile(c *gin.Context, list string, version string, toggleLink st
 		pandariaConcats += bufPandaria.String()
     }
 
-    fmt.Printf(pandariaConcats)
+    fmt.Printf(concats)
 
     // 因为如果是pandaria ui 两个footer文件是都需要更改的
     var staticFooterName string
@@ -401,25 +401,25 @@ func ChangeFooterFile(c *gin.Context, list string, version string, toggleLink st
 			staticPandariaFooterName = viper.GetString(fmt.Sprintf("%s.osfooterfileaddr", tag))
         }
 
-		in, err := os.Open(staticPandariaFooterName)
+		in2, err := os.Open(staticPandariaFooterName)
 
 		if err != nil {
 			fmt.Println("open file fail:", err)
 			os.Exit(-1)
 		}
 
-		defer in.Close()
+		defer in2.Close()
 
-		out, err := os.OpenFile("static/rancherfile/pandariaTopNavFooter.hbs", os.O_TRUNC|os.O_RDWR|os.O_CREATE, 0766)
+		out2, err := os.OpenFile("static/rancherfile/pandariaTopNavFooter.hbs", os.O_TRUNC|os.O_RDWR|os.O_CREATE, 0766)
 
 		if err != nil {
 			fmt.Println("Open write file fail:", err)
 			os.Exit(-1)
 		}
 
-		defer out.Close()
+		defer out2.Close()
 
-		br := bufio.NewReader(in)
+		br := bufio.NewReader(in2)
 
 		for {
 			line, _, err := br.ReadLine()
@@ -431,7 +431,7 @@ func ChangeFooterFile(c *gin.Context, list string, version string, toggleLink st
 				os.Exit(-1)
 			}
 			newLine := strings.Replace(string(line), "rancher-tool-wsy-link", pandariaConcats, -1)
-			_, err = out.WriteString(newLine + "\n")
+			_, err = out2.WriteString(newLine + "\n")
 			if err != nil {
 				fmt.Println("write to file fail:", err)
 				os.Exit(-1)
@@ -528,7 +528,7 @@ func ChangeLoginRecord(c *gin.Context, LoginrecordString string, version string,
 
     json.Unmarshal([]byte(LoginrecordString), &loginrecordData)
 
-    s := `<div style="position: fixed; padding: 0px 20px; bottom: 20px; left: 0px; width: 100%; text-align: right; background: rgba(204,204,204, .3);">
+    s := `<div style="position: fixed; padding: 0px 20px; bottom: 14px; left: 0px; width: 100%; text-align: right; background: rgba(204,204,204, .3);">
         <a style="color: #3497DA" role="button" class="btn btn-sm bg-transparent" target="blank" rel="noreferrer noopener" href="{{.LinkAddr}}">{{.LinkName}}</a>
     </div>`
 
