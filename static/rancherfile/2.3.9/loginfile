@@ -33,12 +33,11 @@
           {{/if}}
 
           {{#if isShibboleth}}
-            {{login-saml
+            <p>{{t "loginPage.shibbolethMessage" appName=settings.appName}}</p>
+            <br/>
+            {{login-shibboleth
               action=(action "started")
-              provider="shibboleth"
-              requestId=requestId
-              publicKey=publicKey
-              responseType=responseType
+              waiting=shibbolethWaiting
             }}
           {{/if}}
 
@@ -77,9 +76,6 @@
             {{login-saml
               action=(action "started")
               provider="ping"
-              requestId=requestId
-              publicKey=publicKey
-              responseType=responseType
             }}
           {{/if}}
 
@@ -87,9 +83,6 @@
             {{login-saml
               action=(action "started")
               provider="adfs"
-              requestId=requestId
-              publicKey=publicKey
-              responseType=responseType
             }}
           {{/if}}
 
@@ -97,9 +90,6 @@
             {{login-saml
               action=(action "started")
               provider="okta"
-              requestId=requestId
-              publicKey=publicKey
-              responseType=responseType
             }}
           {{/if}}
 
@@ -107,9 +97,6 @@
             {{login-saml
               action=(action "started")
               provider="keycloak"
-              requestId=requestId
-              publicKey=publicKey
-              responseType=responseType
             }}
           {{/if}}
 

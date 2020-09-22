@@ -2,7 +2,7 @@ import { cancel, next, schedule } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import C from 'ui/utils/constants';
-import { get, set, observer } from '@ember/object';
+import { get, set } from '@ember/object';
 
 export default Route.extend({
   access:     service(),
@@ -25,16 +25,19 @@ export default Route.extend({
   beforeModel() {
     this.updateWindowTitle();
 
-    return (async() => {
-      if (!window.Prettycron) {
-        window.Prettycron = await import('prettycron');
-      }
+    let agent = window.navigator.userAgent.toLowerCase();
 
-      // Find out if auth is enabled
-      return get(this, 'access').detect().finally(() => {
-        return get(this, 'language').initLanguage();
-      });
-    })();
+    // Show the we don't support internet explorer or edge browsers (only edge html based browsers the mobile and chromium based browsers should be okay).
+    if ( agent.indexOf('msie ') >= 0 || agent.indexOf('trident/') >= 0 || agent.indexOf('edge/') >= 0) {
+      this.replaceWith('ie');
+
+      return;
+    }
+
+    // Find out if auth is enabled
+    return get(this, 'access').detect().finally(() => {
+      return get(this, 'language').initLanguage();
+    });
   },
 
   model(params, transition) {
@@ -68,9 +71,6 @@ export default Route.extend({
         // console.log('Loading Show', id);
 
         schedule('afterRender', () => {
-          if (!get(this, 'loadingShown')) {
-            return;
-          }
           $('#loading-underlay').stop().show().fadeIn({// eslint-disable-line
             duration: 100,
             queue:    false,
@@ -184,14 +184,14 @@ export default Route.extend({
     },
   },
 
-  updateWindowTitle: observer('settings.appName', function() {
+  updateWindowTitle: function() {
     if (get(this, 'settings.appName') === 'Rancher') {
       let title = '[[.Title]]'
       document.title = title ? title : 'Rancher';
     } else {
       document.title = get(this, 'settings.appName');
     }
-  }),
+  }.observes('settings.appName'),
 
   finishLogin() {
     let session = get(this, 'session');
