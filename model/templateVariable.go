@@ -2,6 +2,7 @@ package model
 
 type TemplateVariable struct {
 	FileName 	string `json:"file_name" form:"file_name"`
+	FilePandariaName string `json:"file_pandaria_name" form:"file_pandaria__name"`
 	LoginBgFileName 	string `json:"loginbg_file_name" form:"loginbg_file_name"`
 	IconFileName 	string `json:"icon_file_name" form:"icon_file_name"`
 	LinkData 	string `json:"link_data" form:"link_data"`

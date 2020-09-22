@@ -28,6 +28,8 @@ func InitRouter(g *gin.Engine) {
 	{
 		router.POST("/logo", service.UploadHandler)
 
+		router.POST("/logoPandaria", service.UploadLogoPandariaHandler)
+
 		router.POST("/icon", service.UploadIconHandler)
 
 		router.POST("/loginBackground", service.UploadBackgroundHandler)

@@ -73,6 +73,39 @@ func UploadHandler(c *gin.Context) {
 	SendResponse(c, nil, u)
 }
 
+func UploadLogoPandariaHandler(c *gin.Context) {
+	file, header, err := c.Request.FormFile("file")
+	if err != nil {
+		SendResponse(c, errno.ErrBind, nil)
+		return
+	}
+	fileName := header.Filename
+	fmt.Println(file, err, fileName)
+	//创建文件
+	u1 := uuid.Must(uuid.NewV4())
+	fmt.Printf("UUIDv4: %s\n", u1)
+
+	newFileName := "logoPandaria" + u1.String() + ".svg"
+	out, err := os.Create("static/uploadfile/" + newFileName)
+	//注意此处的 static/uploadfile/ 不是/static/uploadfile/
+	if err != nil {
+		log.Fatal(err)
+		SendResponse(c, errno.ErrBind, nil)
+	}
+	defer out.Close()
+	_, err = io.Copy(out, file)
+	if err != nil {
+		log.Fatal(err)
+		SendResponse(c, errno.ErrBind, nil)
+	}
+
+	u := model.TemplateVariable{
+		FilePandariaName: newFileName,
+	}
+
+	SendResponse(c, nil, u)
+}
+
 func UploadIconHandler(c *gin.Context) {
 	file, header, err := c.Request.FormFile("file")
 	if err != nil {
@@ -165,6 +198,7 @@ func Save(c *gin.Context) {
 
 	u := model.TemplateVariable{
         FileName: r.FileName,
+		FilePandariaName: r.FilePandariaName,
         LoginBgFileName: r.LoginBgFileName,
         IconFileName: r.IconFileName,
         LinkData: r.LinkData,
@@ -235,16 +269,9 @@ func Save(c *gin.Context) {
 
     if r.FileName != "" {
         info, err := ioutil.ReadFile("static/uploadfile/" + r.FileName)
-        fileinfo, fileerr := ioutil.ReadFile(viper.GetString(fmt.Sprintf("%s.navfile", r.Tag)))
 
         if err != nil {
             fmt.Println(err)
-            SendResponse(c, errno.ErrBind, nil)
-            return
-        }
-
-        if fileerr != nil {
-            fmt.Println(fileerr)
             SendResponse(c, errno.ErrBind, nil)
             return
         }
@@ -253,13 +280,37 @@ func Save(c *gin.Context) {
         if version == "rancherui" {
             ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.oslogoaddr", r.Tag)), out, 0655)
         } else {
-            fileout := []byte(fileinfo)
-            ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.logoaddr", r.Tag)), out, 0655)
             ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.logoopensourceaddr", r.Tag)), out, 0655)
-            ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.rancherlogofileaddr", r.Tag)), fileout, 0655)
         }
 
     }
+
+	if r.FilePandariaName != "" {
+		info, err := ioutil.ReadFile("static/uploadfile/" + r.FilePandariaName)
+		fileinfo, fileerr := ioutil.ReadFile(viper.GetString(fmt.Sprintf("%s.navfile", r.Tag)))
+
+		if err != nil {
+			fmt.Println(err)
+			SendResponse(c, errno.ErrBind, nil)
+			return
+		}
+
+		if fileerr != nil {
+			fmt.Println(fileerr)
+			SendResponse(c, errno.ErrBind, nil)
+			return
+		}
+
+		out := []byte(info)
+		if version == "rancherui" {
+			ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.oslogoaddr", r.Tag)), out, 0655)
+		} else {
+			fileout := []byte(fileinfo)
+			ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.logoaddr", r.Tag)), out, 0655)
+			ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.rancherlogofileaddr", r.Tag)), fileout, 0655)
+		}
+
+	}
 
     if r.LoginBgFileName != "" {
         info, err := ioutil.ReadFile("static/uploadfile/" + r.LoginBgFileName)
