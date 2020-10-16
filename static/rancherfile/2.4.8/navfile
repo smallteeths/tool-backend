@@ -1,5 +1,5 @@
 <nav class="clearfix responsive-nav" role="navigation" id="js-responsive-nav">
-  <a class="nav-logo logo-oss logo-oss-dark btn bg-transparent"></a>
+  <a class="nav-logo logo-oss logo-oss-dark btn bg-transparent" style="background-size: 160px 40px;"></a>
   <ul class="nav-main nav-main-dark nav-list no-inline-space">
     {{page-header-project-cn pageScope=pageScope}}
 
