@@ -268,7 +268,9 @@ func Save(c *gin.Context) {
     }
 
     if r.FileName != "" {
+		fmt.Println(r.FileName)
         info, err := ioutil.ReadFile("static/uploadfile/" + r.FileName)
+		fileinfo, fileerr := ioutil.ReadFile(viper.GetString(fmt.Sprintf("%s.osnavfile", r.Tag)))
 
         if err != nil {
             fmt.Println(err)
@@ -276,11 +278,19 @@ func Save(c *gin.Context) {
             return
         }
 
+		if fileerr != nil {
+			fmt.Println(fileerr)
+			SendResponse(c, errno.ErrBind, nil)
+			return
+		}
+
         out := []byte(info)
         if version == "rancherui" {
             ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.oslogoaddr", r.Tag)), out, 0655)
         } else {
+			fileout := []byte(fileinfo)
             ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.logoopensourceaddr", r.Tag)), out, 0655)
+			ioutil.WriteFile(viper.GetString(fmt.Sprintf("%s.osrancherlogofileaddr", r.Tag)), fileout, 0655)
         }
 
     }
