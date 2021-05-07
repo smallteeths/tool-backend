@@ -1,4 +1,4 @@
-FROM golang:latest
+FROM golang:1.15
 
 MAINTAINER Razil "503630985@qq.com"
 
@@ -25,7 +25,11 @@ WORKDIR $GOPATH/src/tool-backend
 
 ADD . $GOPATH/src/tool-backend
 
-RUN go get -d -v ./...
+RUN go mod init
+
+RUN go mod edit -replace=github.com/satori/go.uuid@v1.2.0=github.com/satori/go.uuid@master
+
+RUN GO111MODULE=on go get -d -v ./...
 
 RUN go build -o facemask
 

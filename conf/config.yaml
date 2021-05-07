@@ -152,3 +152,31 @@ proxyfileaddr: static/rancherfile/proxy
   osrancherthemeaddr: rancherui/ui/app/styles/abstracts/_variables.scss
   navfile: static/rancherfile/2.4.13/navfile
   osnavfile: static/rancherfile/2.4.13/osnavfile
+2.5.7:
+  logoaddr: rancherui/pandaria-ui/public/assets/images/logos/rancher-logo-cow-white.svg
+  logoopensourceaddr: rancherui/pandaria-ui/public/assets/images/logos/main.svg
+  oslogoaddr: rancherui/ui/public/assets/images/logos/main.svg
+  loginbgaddr: rancherui/pandaria-ui/public/assets/images/login-cityscape.svg
+  osloginbgaddr: rancherui/ui/public/assets/images/login-cityscape.svg
+  loginiconaddr: rancherui/pandaria-ui/public/assets/images/logos/favicon.ico
+  osloginiconaddr: rancherui/ui/public/assets/images/logos/favicon.ico
+  footerfileaddr: static/rancherfile/2.5.7/footer
+  osfooterfileaddr: static/rancherfile/2.5.7/osfooter
+  footercoverfileaddr: static/rancherfile/2.5.7/footerCover
+  osfootercoverfileaddr: static/rancherfile/2.5.7/osfooterCover
+  themefileaddr: static/rancherfile/2.5.7/_variables
+  loginfileaddr: static/rancherfile/2.5.7/loginfile
+  apifileaddr: static/rancherfile/2.5.7/apifile
+  rancherfooteraddr: rancherui/pandaria-ui/app/components/page-footer-cn/template.hbs
+  rancheropensourcefooteraddr: rancherui/pandaria-ui/app/components/page-footer/template.hbs
+  osrancherfooteraddr: rancherui/ui/app/components/page-footer/template.hbs
+  rancherloginfileaddr: rancherui/pandaria-ui/lib/login/addon/login/template.hbs
+  rancherlogofileaddr: rancherui/pandaria-ui/app/components/page-header-left-top/template.hbs
+  osrancherlogofileaddr: rancherui/pandaria-ui/app/components/page-header/template.hbs
+  osrancherloginfileaddr: rancherui/ui/lib/login/addon/login/template.hbs
+  rancherapiaddr: rancherui/pandaria-ui/app/application/route.js
+  osrancherapiaddr: rancherui/ui/app/application/route.js
+  rancherthemeaddr: rancherui/pandaria-ui/app/styles/abstracts/_variables.scss
+  osrancherthemeaddr: rancherui/ui/app/styles/abstracts/_variables.scss
+  navfile: static/rancherfile/2.5.7/navfile
+  osnavfile: static/rancherfile/2.5.7/osnavfile
