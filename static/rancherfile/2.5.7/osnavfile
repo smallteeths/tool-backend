@@ -129,6 +129,29 @@
             {{/link-to-as-attrs}}
           </li>
         {{/if}}
+      {{else if item.url}}
+        <li class="nav-item">
+          {{#if item.iframeEnabled}}
+            {{#if item.customRoute}}
+              {{#link-to-as-attrs
+                ourRoute=item.customRoute
+                activeParent="LI"
+                class="nav-link"
+                ctx=item.ctx
+              }}
+                {{item.label}}
+              {{/link-to-as-attrs}}
+            {{else}}
+              <a href="{{item.url}}">
+                {{item.label}}
+              </a>
+            {{/if}}
+          {{else}}
+            <a href="{{item.url}}" target="_blank">
+              {{item.label}}
+            </a>
+          {{/if}}
+        </li>
       {{else if item.dashboardBaseLink}}
         {{#if dashboardBaseLink}}
           <li>
