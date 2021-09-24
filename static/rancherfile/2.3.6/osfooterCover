@@ -1,3 +1,1 @@
-{{#if settings.isRancher}}
-  rancher-tool-wsy-link
-{{/if}}
+rancher-tool-wsy-link
